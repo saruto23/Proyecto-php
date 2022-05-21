@@ -121,7 +121,7 @@ function obtenerDesarrollador($conexion, $id){
 
 }
 
-function busqueda($conexion, $campos){
+function busquedaV($conexion, $campos){
     $titulo = $campos['titulo'];
     $genero = $campos['genero'];
     $plataforma = $campos['plataforma'];
@@ -140,5 +140,38 @@ function busqueda($conexion, $campos){
     return $resultado;
 }
 
+function busquedaP($conexion, $campos){
+    $nombre = $campos['nombre'];
+    $compania = $campos['compania'];
+   $sql = "select idPlataforma, nombre, compañia FROM plataformas WHERE nombre LIKE '%$nombre%' AND compañia LIKE '%$compania%';";
+
+    $desarrolladores = mysqli_query($conexion, $sql);
+
+    $resultado = [];
+
+    if($desarrolladores && mysqli_num_rows($desarrolladores) >= 1){
+        $resultado = $desarrolladores;
+
+    }
+
+    return $resultado;
+}
+
+function busquedaD($conexion, $campos){
+    $nombre = $campos['nombre'];
+    $pais = $campos['pais'];
+    $sql = "select idDesarrollador, nombre, pais FROM desarrollador WHERE nombre LIKE '%$nombre%' AND pais LIKE '%$pais%';";
+
+    $desarrolladores = mysqli_query($conexion, $sql);
+
+    $resultado = [];
+
+    if($desarrolladores && mysqli_num_rows($desarrolladores) >= 1){
+        $resultado = $desarrolladores;
+
+    }
+
+    return $resultado;
+}
 
 

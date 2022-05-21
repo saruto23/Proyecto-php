@@ -15,7 +15,7 @@ $campos ['titulo'] = $_POST['titulo'];
     $campos['fLanzamiento'] = $_POST['fLanzamiento'];
     $_SESSION['campos'] = $campos;
 
-    header("Location: busqueda.php");
+    header("Location: index.php");
 
 
 }
