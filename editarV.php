@@ -58,7 +58,7 @@ $videojuego = mysqli_fetch_assoc($resultado);
                 </select>
                 <label for="desarrollador">Desarrollador</label>
             </div>
-<--PLATAFORMA NO TOCAR *********************************************************************************************************************************-->
+<---PLATAFORMA NO TOCAR *********************************************************************************************************************************--->
             <div class="form-floating mb-3">
                 <select  class="form-select" id="floatingSelect" aria-label="menu de plataformas" name="plataforma">
                     <option value="<?=$videojuego['idPlataforma']?>"><?=$videojuego['Plataforma']?></option>
