@@ -8,7 +8,7 @@
         <h1 class="display-1 text-center">Exclusivos de Consola</h1>
     </div>
     <div class="col-12 ">
-        <a href="anhadiralumno.php"><input class="btn btn-warning" type="button" value="Nuevo"></a>
+        <a href="agregarV.php"><input class="btn btn-warning" type="button" value="Nuevo Videojuego"></a>
         <br>
         <br>
         <table class="table table-dark">
@@ -25,9 +25,9 @@
             </thead>
             <tbody>
             <?php
-            $videojuegos = obtenerVideojuegos($db);
-            if(!empty($videojuegos)){
-                while($videojuego = mysqli_fetch_assoc($videojuegos)){
+            $plataformas = obtenerVideojuegos($db);
+            if(!empty($plataformas)){
+                while($videojuego = mysqli_fetch_assoc($plataformas)){
                     ?>
 
                     <tr>
