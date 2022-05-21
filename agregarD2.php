@@ -7,7 +7,7 @@ if(isset($_POST)){
     //var_dump($_POST);
 
     $nombre = $_POST['nombre'];
-    $compania = $_POST['compania'];
+    $pais = $_POST['pais'];
 
 
     // Validación
@@ -17,18 +17,18 @@ if(isset($_POST)){
         $errores['nombre'] = 'Falta un  nombre';
     }
 
-    if(empty($compania)){
-        $errores['compania'] = 'Falta una compañia';
+    if(empty($pais)){
+        $errores['pais'] = 'Falta un país';
     }
 
 
     if(count($errores) == 0){
 
-        $sql = "INSERT into plataformas (`nombre`, `compañia`) VALUES ('$nombre', '$compania');";
+        $sql = "INSERT into desarrollador (`nombre`, `pais`) VALUES ('$nombre', '$pais');";
 
         $guardar = mysqli_query($db, $sql);
 
-        header("Location: plataforma.php");
+        header("Location: desarrolladores.php");
         //var_dump($guardar);
 
 
@@ -36,7 +36,7 @@ if(isset($_POST)){
 
         $_SESSION["errores_entrada"] = $errores;
         var_dump($_SESSION);
-        header("Location: agregarP.php");
+        header("Location: agregarD.php");
     }
 
 

@@ -63,7 +63,7 @@ function obtenerVideojuegos($conexion){
 
 function obtenerDesarrolladores($conexion){
 
-    $sql = "select nombre, pais, logo, idDesarrollador from desarrollador;";
+    $sql = "select nombre, pais, idDesarrollador from desarrollador;";
     $desarrolladores = mysqli_query($conexion, $sql);
 
     $resultado = [];
@@ -79,12 +79,12 @@ function obtenerDesarrolladores($conexion){
 function obtenerVideojuego($conexion, $id){
 
     $sql = "SELECT v.idDesarrollador, v.idVideojuego, v.idPlataforma,  v.titulo, v.genero, v.fLanzamiento, p.nombre as 'Plataforma',  d.nombre as 'Desarrollador' FROM videojuegos v JOIN plataformas p ON v.idPlataforma=p.idPlataforma join desarrollador d on v.idDesarrollador=d.idDesarrollador where v.idVideojuego =$id;";
-    $plataformas = mysqli_query($conexion, $sql);
+    $videojuegos = mysqli_query($conexion, $sql);
 
     $resultado = [];
 
-    if($plataformas && mysqli_num_rows($plataformas) >= 1){
-        $resultado = $plataformas;
+    if($videojuegos && mysqli_num_rows($videojuegos) >= 1){
+        $resultado = $videojuegos;
     }
 
     return $resultado;
@@ -104,6 +104,40 @@ $sql = "SELECT idPlataforma, nombre, compañia from plataformas where idPlatafor
 
     return $resultado;
 
+}
+
+function obtenerDesarrollador($conexion, $id){
+
+    $sql = "SELECT idDesarrollador,  nombre, pais from desarrollador where idDesarrollador =$id ;";
+    $desarrolladores = mysqli_query($conexion, $sql);
+
+    $resultado = [];
+
+    if($desarrolladores && mysqli_num_rows($desarrolladores) >= 1){
+        $resultado = $desarrolladores;
+    }
+
+    return $resultado;
+
+}
+
+function busqueda($conexion, $campos){
+    $titulo = $campos['titulo'];
+    $genero = $campos['genero'];
+    $plataforma = $campos['plataforma'];
+    //$sql = "select titulo, genero FROM videojuegos WHERE titulo LIKE '%$titulo%' AND genero LIKE '%$genero%';";
+    $sql = "SELECT v.idVideojuego, v.titulo, v.genero, v.fLanzamiento, p.nombre as 'Plataforma',  d.nombre as 'Desarrollador' FROM videojuegos v JOIN plataformas p ON v.idPlataforma=p.idPlataforma join desarrollador d on v.idDesarrollador=d.idDesarrollador WHERE v.titulo LIKE '%$titulo%' AND v.genero LIKE '%$genero%' AND p.nombre LIKE '%$plataforma%';";
+
+    $desarrolladores = mysqli_query($conexion, $sql);
+
+    $resultado = [];
+
+    if($desarrolladores && mysqli_num_rows($desarrolladores) >= 1){
+        $resultado = $desarrolladores;
+
+    }
+
+    return $resultado;
 }
 
 

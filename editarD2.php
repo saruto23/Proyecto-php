@@ -7,8 +7,8 @@ if(isset($_POST)){
     //var_dump($_POST);
 
     $nombre = $_POST['nombre'];
-    $compania = $_POST['compania'];
-    $idPlataforma = $_POST['idPlataforma'];
+    $pais = $_POST['pais'];
+    $idDesarrollador = $_POST['idDesarrollador'];
 
     // Validación
     $errores = array();
@@ -17,22 +17,22 @@ if(isset($_POST)){
         $errores['nombre'] = 'Falta un nombre';
     }
 
-    if(empty($compania)){
-        $errores['compania'] = 'Falta una Compañia';
+    if(empty($pais)){
+        $errores['pais'] = 'Falta un Pais';
     }
 
 
 
     if(count($errores) == 0){
 
-        $sql= "UPDATE plataformas set nombre = '$nombre', compañia = '$compania' where idPlataforma = $idPlataforma ;";
+        $sql= "UPDATE desarrollador set nombre = '$nombre', pais = '$pais' where idDesarrollador = $idDesarrollador ;";
         $guardar = mysqli_query($db, $sql);
-        header("Location: plataforma.php");
+        header("Location: desarrolladores.php");
     }else{
 
         $_SESSION["errores_entrada"] = $errores;
         var_dump($_SESSION);
-        header("Location: editarP.php?idPlataforma=$idPlataforma");
+        header("Location: editarD.php?idDesarrollador=$idDesarrollador");
     }
 
 

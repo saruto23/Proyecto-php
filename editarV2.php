@@ -33,13 +33,13 @@ if(isset($_POST)){
 
         $sql= "UPDATE videojuegos SET titulo = '$titulo' ,  genero = '$genero', fLanzamiento = '$fLanzamiento', idPlataforma = $plataforma,  idDesarrollador = $desarrollador WHERE idVideojuego = $idVideojuego;";
         $guardar = mysqli_query($db, $sql);
-
+        header("Location: index.php");
     }else{
 
         $_SESSION["errores_entrada"] = $errores;
         var_dump($_SESSION);
-
+        header("Location: editarV.php?idVideojuego=$idVideojuego");
     }
 
-    header("Location: index.php");
+
 }

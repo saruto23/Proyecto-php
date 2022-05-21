@@ -33,7 +33,7 @@ if(isset($_POST)){
         $sql = "INSERT INTO `videojuegos` (`titulo`, `genero`, `fLanzamiento`,`idDesarrollador`, `idPlataforma` ) VALUES ('$titulo', '$genero', '$fLanzamiento', '$desarrollador', '$plataforma');";
 
         $guardar = mysqli_query($db, $sql);
-
+        header("Location: index.php");
 
         //var_dump($guardar);
 
@@ -42,8 +42,8 @@ if(isset($_POST)){
 
         $_SESSION["errores_entrada"] = $errores;
         var_dump($_SESSION);
-
+        header("Location: agregarV.php");
     }
 
-    header("Location: index.php");
+
 }
